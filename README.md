@@ -1,4 +1,4 @@
-# stoke.repo
+# RBC stoke.repo
 
 This is a sample Spring Boot application that demonstrates how to build and run a simple web-based stock application using the Spring framework.
 
