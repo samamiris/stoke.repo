@@ -1,10 +1,7 @@
 package com.challenge.rbc.controller;
 
 import com.challenge.rbc.entity.StockData;
-import com.challenge.rbc.repository.StockDataRepository;
-import com.challenge.rbc.service.StockDataService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,12 @@ public class StockDataController {
     private StockDataServiceImpl stockDataService;
     private static final Logger LOG = LoggerFactory.getLogger(StockDataController.class);
 
+    /**
+     * insert bulk data as a file
+     * @param clientId
+     * @param file
+     * @return
+     */
     @PostMapping("/bulk-insert")
     public ResponseEntity<String> bulkInsert(@RequestHeader("X-Client_Id") String clientId,
                                              @RequestParam("file") MultipartFile file) {
@@ -46,7 +49,12 @@ public class StockDataController {
         }
     }
 
-
+    /**
+     * return specific stock by symbol
+     * @param clientId
+     * @param symbol
+     * @return
+     */
     @GetMapping("/{symbol}")
     public ResponseEntity<?> getStockData(@RequestHeader("X-Client_Id") String clientId,
                                           @PathVariable("symbol") String symbol) {
@@ -61,14 +69,23 @@ public class StockDataController {
         }
     }
 
+    /**
+     * add one row of stock
+     * @param stockData
+     * @return
+     */
     @PostMapping("/add")
     public ResponseEntity<StockData> addStockData(@RequestBody StockData stockData) {
         StockData newStockData = stockDataService.addStockData(stockData);
         return new ResponseEntity<>(newStockData, HttpStatus.CREATED);
     }
 
-
-    @GetMapping("/finsStock/{stock}")
+    /**
+     * find list of stock by symbol
+     * @param symbol
+     * @return
+     */
+    @GetMapping("/findStock/{stock}")
     public ResponseEntity<List<StockData>> getStockDataBySymbol(@PathVariable String symbol) {
         List<StockData> stockDataList = stockDataService.findBySymbol(symbol);
         if (stockDataList == null || stockDataList.isEmpty()) {
@@ -77,6 +94,10 @@ public class StockDataController {
         return new ResponseEntity<>(stockDataList, HttpStatus.OK);
     }
 
+    /**
+     * return all stock data
+     * @return
+     */
     @GetMapping("/allStockData")
     public ResponseEntity<List<StockData>> getAllStockData() {
         List<StockData> stockDataList = stockDataService.findAll();

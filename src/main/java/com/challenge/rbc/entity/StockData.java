@@ -5,7 +5,7 @@ import lombok.*;
 import java.util.Date;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.Data;
+import lombok.*;
 
 @Builder
 @Getter
