@@ -2,22 +2,20 @@ package com.challenge.rbc.entity;
 
 import lombok.*;
 
-import jakarta.persistence.*;
 import java.util.Date;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
 
-
-@Entity
-@Table(name = "stock")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode
+@Document(collection = "stock_data")
 public class StockData {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String clientId;
     private Integer quarter;
