@@ -1,7 +1,0 @@
-com\challenge\rbc\service\StockDataService.class
-com\challenge\rbc\RbcApplication.class
-com\challenge\rbc\service\StockDataServiceImpl.class
-com\challenge\rbc\controller\StockDataController.class
-com\challenge\rbc\entity\StockData$StockDataBuilder.class
-com\challenge\rbc\entity\StockData.class
-com\challenge\rbc\repository\StockDataRepository.class
